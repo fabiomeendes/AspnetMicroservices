@@ -28,3 +28,14 @@ services:
       - catalogdb
     ports:
       - "8001:80"
+
+  ordering.api:
+    container_name: ordering.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:OrderingConnectionString=server=localhost\\sqlexpress;database=OrderDb;trusted_connection=true;TrustServerCertificate=True;"
+    depends_on:
+      - orderdb
+    ports:
+      - "8004:80"
+
