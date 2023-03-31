@@ -15,12 +15,20 @@ namespace Basket.API.Repositories
 
         public async Task<ShoppingCart> GetBasket(string userName)
         {
-            var basket = await _redisCache.GetStringAsync(userName);
+            try
+            {
+                var basket = await _redisCache.GetStringAsync(userName);
 
-            if (String.IsNullOrEmpty(basket))
-                return null;
+                if (String.IsNullOrEmpty(basket))
+                    return null;
 
-            return JsonConvert.DeserializeObject<ShoppingCart>(basket);
+                return JsonConvert.DeserializeObject<ShoppingCart>(basket);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
 
         public async Task<ShoppingCart> UpdateBasket(ShoppingCart basket)
