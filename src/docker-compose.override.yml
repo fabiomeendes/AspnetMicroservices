@@ -33,7 +33,7 @@ services:
     depends_on:
       - catalogdb
     ports:
-      - "8001:80"
+      - "8000:80"
 
   ordering.api:
     container_name: ordering.api
@@ -49,9 +49,9 @@ services:
     container_name: basket.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "CacheSettings:ConnectionString=basketdb=6379"
+      - "CacheSettings:ConnectionString=basketdb:6379"
     depends_on:
       - basketdb
     ports:
-      - "8002:80"
+      - "8001:80"
 
