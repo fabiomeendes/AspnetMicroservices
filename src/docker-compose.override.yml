@@ -35,16 +35,6 @@ services:
     ports:
       - "8000:80"
 
-  ordering.api:
-    container_name: ordering.api
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - "ConnectionStrings:OrderingConnectionString=Server=orderdb;Database=OrderDb;User Id=sa;Password=FbO12345678;TrustServerCertificate=true"  
-    depends_on:
-      - orderdb
-    ports:
-      - "8004:80"
-
   basket.api:
     container_name: basket.api
     environment:
@@ -55,3 +45,12 @@ services:
     ports:
       - "8001:80"
 
+  ordering.api:
+    container_name: ordering.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:OrderingConnectionString=Server=orderdb;Database=OrderDb;User Id=sa;Password=FbO12345678;TrustServerCertificate=true"  
+    depends_on:
+      - orderdb
+    ports:
+      - "8004:80"
